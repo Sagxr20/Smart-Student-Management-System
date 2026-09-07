@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4"><div><h2>Dashboard</h2><p class="text-muted">Student management overview</p></div></div>
+<div class="row g-3">
+{% for label,val,icon in [('Students',stats.students,'👨‍🎓'),('Subjects',stats.subjects,'📚'),('Present',stats.present,'✅'),('Absent',stats.absent,'❌')] %}
+<div class="col-md-3"><div class="card p-3"><div>{{icon}} {{label}}</div><div class="stat">{{val}}</div></div></div>{% endfor %}
+</div>
+<div class="card p-3 mt-4"><h5>Recent Attendance</h5><div class="table-responsive"><table class="table"><thead><tr><th>Date</th><th>Student</th><th>Subject</th><th>Status</th></tr></thead><tbody>
+{% for r in recent %}<tr><td>{{r.att_date}}</td><td>{{r.student}}</td><td>{{r.subject}}</td><td><span class="badge bg-{{'success' if r.status=='Present' else 'danger'}}">{{r.status}}</span></td></tr>{% else %}<tr><td colspan="4">No attendance records yet.</td></tr>{% endfor %}
+</tbody></table></div></div>{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Attendance{% endblock %}{% block content %}
+<h2>Attendance</h2><div class="card p-4 mt-3 mb-4"><form method="post" class="row g-3">
+<div class="col-md-3"><label>Student</label><select class="form-select" name="student_id" required>{% for s in students %}<option value="{{s.id}}">{{s.roll_no}} - {{s.name}}</option>{% endfor %}</select></div>
+<div class="col-md-3"><label>Subject</label><select class="form-select" name="subject_id" required>{% for s in subjects %}<option value="{{s.id}}">{{s.code}} - {{s.name}}</option>{% endfor %}</select></div>
+<div class="col-md-2"><label>Date</label><input class="form-control" type="date" name="att_date" value="{{today}}" required></div>
+<div class="col-md-2"><label>Status</label><select class="form-select" name="status"><option>Present</option><option>Absent</option></select></div>
+<div class="col-md-2 d-flex align-items-end"><button class="btn btn-dark w-100">Save</button></div></form></div>
+<div class="card p-3"><table class="table"><thead><tr><th>Date</th><th>Roll</th><th>Student</th><th>Subject</th><th>Status</th></tr></thead><tbody>
+{% for r in records %}<tr><td>{{r.att_date}}</td><td>{{r.roll_no}}</td><td>{{r.student}}</td><td>{{r.subject}}</td><td><span class="badge bg-{{'success' if r.status=='Present' else 'danger'}}">{{r.status}}</span></td></tr>{% else %}<tr><td colspan="5">No records.</td></tr>{% endfor %}</tbody></table></div>{% endblock %}
