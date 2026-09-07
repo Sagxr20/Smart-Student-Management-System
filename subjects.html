@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Subjects{% endblock %}{% block content %}
+<h2>Subjects</h2><div class="card p-4 mt-3 mb-4"><form method="post" class="row g-2">
+<div class="col-md-5"><input class="form-control" name="name" placeholder="Subject name" required></div><div class="col-md-4"><input class="form-control" name="code" placeholder="Code (e.g. PY101)" required></div><div class="col-md-3"><button class="btn btn-dark w-100">Add Subject</button></div></form></div>
+<div class="card p-3"><table class="table"><thead><tr><th>Code</th><th>Subject</th><th>Action</th></tr></thead><tbody>
+{% for s in subjects %}<tr><td>{{s.code}}</td><td>{{s.name}}</td><td><form method="post" action="{{url_for('delete_subject',id=s.id)}}" onsubmit="return confirm('Delete subject?')"><button class="btn btn-sm btn-outline-danger">Delete</button></form></td></tr>
+{% else %}<tr><td colspan="3">No subjects yet.</td></tr>{% endfor %}</tbody></table></div>{% endblock %}

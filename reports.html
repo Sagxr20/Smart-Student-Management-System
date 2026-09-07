@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block title %}Reports{% endblock %}{% block content %}
+<h2>Academic Reports</h2><div class="card p-3 mt-3"><div class="table-responsive"><table class="table"><thead><tr><th>Roll</th><th>Student</th><th>Attendance</th><th>Present</th><th>Total</th><th>Average Marks</th></tr></thead><tbody>
+{% for r in report %}<tr><td>{{r.student.roll_no}}</td><td>{{r.student.name}}</td><td><strong>{{r.pct}}%</strong></td><td>{{r.present}}</td><td>{{r.total}}</td><td>{{r.avg}}%</td></tr>{% else %}<tr><td colspan="6">Add students to generate reports.</td></tr>{% endfor %}</tbody></table></div></div>{% endblock %}
